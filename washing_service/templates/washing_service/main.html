@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Intensify by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'washing_service/css/main.css' %}" />
+
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'washing_service/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/css/mainform.css' %}">
+<!--===============================================================================================-->
+	</head>
+
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="logo">Clean Is Sexy</a>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="generic.html">Generic</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="#" class="button fit">Login</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="content">
+					<h1>Let us wash your car!</h1>
+					<p>We have professionally trained washers ready to take care
+                        of your car.<br/>Schedule your visit to one of our locations.</p>
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">Get Started</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper">
+				<div class="inner flex flex-3">
+					<div class="flex-item left">
+						<div>
+							<h3>Schedule Your Visit</h3>
+							<p>Easily choose time & location at your<br /> convenience, including late evenings and weekends.</p>
+						</div>
+						<div>
+							<h3>Visit Our Center</h3>
+							<p>Bring your car to us, where we<br /> take utmost care to ensure great results.</p>
+						</div>
+					</div>
+					<div class="flex-item image fit round">
+						<img src="{% static 'washing_service/images/pic01.jpg' %}" alt="" />
+					</div>
+					<div class="flex-item right">
+						<div>
+							<h3>Get Clean Car</h3>
+							<p>In under 20 minutes, your roadster<br /> will be all clean and ready for action.</p>
+						</div>
+						<div>
+							<h3>Drive Happily</h3>
+							<p>What's a better feeling than being in<br/>fresh car? I'll tell you: Nothing!</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style1 special">
+				<div class="inner">
+					<h2>Top Level Quality</h2>
+					<figure>
+					    <blockquote>
+					        We are ranked #1 by customers in the Georgia.
+                            We understand that every little detail might be
+                            important to you.<br>You ask, and we deliver it!
+					    </blockquote>
+					</figure>
+				</div>
+			</section>
+
+        <!-- CONTACT FORM  -->
+
+        <div class="bg-contact3" style="background-image:
+        url({% static 'washing_service/images/bg-01.jpg' %});">
+		<div class="container-contact3">
+			<div class="wrap-contact3">
+				<form class="contact3-form validate-form">
+					<span class="contact3-form-title">
+						Schedule a Visit
+					</span>
+
+					<div class="wrap-input3 validate-input" data-validate="Name is required">
+						<input class="input3" type="text" name="name" placeholder="Your Name">
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="wrap-input3 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input3" type="text" name="email" placeholder="Your Phone">
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="wrap-input3 input3-select">
+						<div>
+							<select class="selection-2" name="service">
+								<option>Needed Services</option>
+								<option>eCommerce Bussiness</option>
+								<option>UI/UX Design</option>
+								<option>Online Services</option>
+							</select>
+						</div>
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="wrap-input3 input3-select">
+						<div>
+							<select class="selection-2" name="budget">
+								<option>Budget</option>
+								<option>1500 $</option>
+								<option>2000 $</option>
+								<option>3000 $</option>
+							</select>
+						</div>
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="wrap-input3 validate-input" data-validate = "Message is required">
+						<textarea class="input3" name="message" placeholder="Your Message"></textarea>
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="container-contact3-form-btn">
+						<button class="contact3-form-btn"">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'washing_service/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'washing_service/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'washing_service/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'washing_service/vendor/select2/select2.min.js' %}"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'washing_service/js/mainform.js' %}"></script>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Get In Touch</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> (995) 574-21-55-39</li>
+						<li><span class="icon fa-envelope"></span>
+                            <a href="mailto:sexycars@info.com"> sexycars@info.com</a></li>
+						<li><span class="icon fa-map-marker"></span>
+                            <a href="https://goo.gl/maps/4SUtGDUHehf4rgKy8"> 67 Merab Kostava St.</a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'washing_service/js/jquery.min.js' %}"></script>
+			<script src="{% static 'washing_service/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'washing_service/js/skel.min.js' %}"></script>
+			<script src="{% static 'washing_service/js/utils.js' %}"></script>
+			<script src="{% static 'washing_service/js/main.js' %}"></script>
+
+	</body>
+</html>
