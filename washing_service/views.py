@@ -12,7 +12,7 @@ def home(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'Your visit is scheduled!')
+                                 'Your visit has been saved!')
             return HttpResponseRedirect(reverse('home'))
     else:
         form = CreateNewOrder()
