@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import CreateNewOrder
+from django.urls import reverse
 
 
 def home(request):
@@ -9,7 +10,7 @@ def home(request):
 
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('home'))
     else:
         form = CreateNewOrder()
 
