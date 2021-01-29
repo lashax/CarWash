@@ -112,6 +112,14 @@
 					</span>
                     <div class="customfield">
                     {{ form|crispy }}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="alert alert-{{ message.tags }}">
+                                  {{ message }}
+                              </div>
+                          {% endfor %}
+                    {% endif %}
+
                     </div>
 
 					<div class="container-contact3-form-btn">

@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import CreateNewOrder
 from django.urls import reverse
+from django.contrib import messages
 
 
 def home(request):
@@ -10,6 +11,8 @@ def home(request):
 
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Your visit is scheduled!')
             return HttpResponseRedirect(reverse('home'))
     else:
         form = CreateNewOrder()
