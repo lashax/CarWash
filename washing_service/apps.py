@@ -7,16 +7,16 @@ class WashingServiceConfig(AppConfig):
 
     def ready(self):
         """
-        სერვერის გაშვებისას, მარტო ერთხელ მოწმდება ScheduledOrders მოდელი.
+        სერვერის გაშვებისას, მარტო ერთხელ მოწმდება ScheduledOrder მოდელი.
         თუ მასში არსებული განცხადებები უკვე დასრულდა, ანუ ვისიტი იყო დაგეგმილი
         და უკვე შედგა ეს ვიზიტი, მაშინ ეს განცხადება გადადის History მოდელში.
         """
 
-        from washing_service.models import ScheduledOrders, History
+        from washing_service.models import ScheduledOrder, History
         from datetime import datetime
         from datetime import timezone
 
-        schedules = ScheduledOrders.objects.all()
+        schedules = ScheduledOrder.objects.all()
         dt = datetime.now()
         dt = dt.replace(tzinfo=timezone.utc)
         for schedule in schedules:

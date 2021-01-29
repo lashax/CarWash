@@ -3,6 +3,6 @@ from .models import *
 
 admin.site.register(WashingCenter)
 admin.site.register(Manager)
-admin.site.register(Employees)
+admin.site.register(Employee)
 admin.site.register(History)
-admin.site.register(ScheduledOrders)
+admin.site.register(ScheduledOrder)

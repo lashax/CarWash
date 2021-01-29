@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import ScheduledOrders
+from .models import ScheduledOrder
 
 
 class DateTimeInput(forms.DateTimeInput):
@@ -13,7 +13,7 @@ class CreateNewOrder(ModelForm):
         self.fields['location'].empty_label = ''
 
     class Meta:
-        model = ScheduledOrders
+        model = ScheduledOrder
         fields = ['customer', 'location', 'car', 'phone', 'date']
         widgets = {
             'date': DateTimeInput(),

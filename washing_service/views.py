@@ -13,7 +13,7 @@ def home(request):
             form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Your visit has been saved!')
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(f"{reverse('home')}#schedule_form")
     else:
         form = CreateNewOrder()
 

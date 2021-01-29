@@ -24,7 +24,7 @@ class Manager(models.Model):
         verbose_name_plural = 'Managers'
 
 
-class Employees(models.Model):
+class Employee(models.Model):
     full_name = models.CharField(max_length=50)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
 
@@ -51,7 +51,7 @@ class History(models.Model):
         verbose_name_plural = 'Histories'
 
 
-class ScheduledOrders(models.Model):
+class ScheduledOrder(models.Model):
     customer = models.CharField(max_length=40)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
     car = models.CharField(max_length=50)
