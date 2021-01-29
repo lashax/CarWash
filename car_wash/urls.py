@@ -21,18 +21,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('washing_service.urls'))
 ]
-
-# from washing_service.models import ScheduledOrders, History
-# from datetime import datetime
-# from datetime import timezone
-#
-#
-# schedules = ScheduledOrders.objects.all()
-# dt = datetime.now()
-# dt = dt.replace(tzinfo=timezone.utc)
-# for schedule in schedules:
-#     if schedule.date < dt:
-#         schedule.delete()
-#         hist = History(customer=schedule.customer, location=schedule.location,
-#                        car=schedule.car, date=schedule.date, phone=schedule.phone)
-#         hist.save()

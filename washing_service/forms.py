@@ -7,9 +7,9 @@ class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
 
 
-class CreateNewList(ModelForm):
+class CreateNewOrder(ModelForm):
     def __init__(self, *args, **kwargs):
-        super(CreateNewList, self).__init__(*args, **kwargs)
+        super(CreateNewOrder, self).__init__(*args, **kwargs)
         self.fields['location'].empty_label = ''
 
     class Meta:
