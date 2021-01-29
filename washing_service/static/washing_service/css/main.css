@@ -3209,3 +3209,14 @@
 				}
 
 		}
+div.customfield select{
+	background: #80c64a;
+	border-radius: 4px;
+	border: solid 1px #dee1e3;
+}
+
+div.customfield input{
+	background: #80c64a;
+	border-radius: 4px;
+	border: solid 1px #dee1e3;
+}
