@@ -38,7 +38,7 @@ class Employees(models.Model):
 
 class History(models.Model):
     customer = models.CharField(max_length=50)
-    location = models.OneToOneField(WashingCenter, on_delete=models.CASCADE)
+    location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
     car = models.CharField(max_length=50)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
@@ -53,7 +53,7 @@ class History(models.Model):
 
 class ScheduledOrders(models.Model):
     customer = models.CharField(max_length=40)
-    location = models.OneToOneField(WashingCenter, on_delete=models.CASCADE)
+    location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
     car = models.CharField(max_length=50)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
