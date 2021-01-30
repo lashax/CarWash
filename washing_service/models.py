@@ -24,7 +24,7 @@ class Manager(models.Model):
         verbose_name_plural = 'Managers'
 
 
-class Employee(models.Model):
+class Washer(models.Model):
     full_name = models.CharField(max_length=50)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
 
@@ -32,8 +32,8 @@ class Employee(models.Model):
         return self.full_name
 
     class Meta:
-        verbose_name = 'Employee'
-        verbose_name_plural = 'Employees'
+        verbose_name = 'Washer'
+        verbose_name_plural = 'Washers'
 
 
 class History(models.Model):
