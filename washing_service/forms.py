@@ -1,6 +1,6 @@
+from datetime import datetime
 from django.forms import ModelForm, DateTimeInput
 from .models import ScheduledOrder
-from datetime import datetime
 
 
 class CreateNewOrder(ModelForm):
@@ -12,12 +12,12 @@ class CreateNewOrder(ModelForm):
         model = ScheduledOrder
         fields = ['customer', 'location', 'car', 'phone', 'date']
 
-        attrs = {
+        date_attrs = {
             'type': 'datetime-local',
             'min': datetime.strftime(datetime.now(), "%Y-%m-%dT%H:%M"),
         }
         widgets = {
-            'date': DateTimeInput(attrs=attrs),
+            'date': DateTimeInput(attrs=date_attrs),
         }
 
         labels = {

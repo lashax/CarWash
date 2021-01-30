@@ -43,6 +43,8 @@ class History(models.Model):
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
 
+    washer = models.ForeignKey(Washer, on_delete=models.CASCADE)
+
     def __str__(self):
         return f"{self.customer} - {self.car}"
 
@@ -57,6 +59,8 @@ class ScheduledOrder(models.Model):
     car = models.CharField(max_length=50)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
+
+    washer = models.ForeignKey(Washer, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.customer} - {self.car} at {self.date}"
