@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+        {% block title %}
+            <title>Washing Dealers</title>
+        {% endblock %}
+        <link rel="icon" href="{% static 'washing_service/images/icons/favicon.png' %}">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'washing_service/css/main.css' %}" />
+
+        <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'washing_service/css/mainform.css' %}">
+
+        {% block styless %}
+        {% endblock %}
+
+	</head>
+
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+                <a href="{% url 'home' %}" class="logo">Clean Is Sexy</a>
+
+                <nav class="left">
+                    <a href="{% url 'home' %}" class="button alt">Home</a>
+                </nav>
+
+                <nav class="right">
+                    <a href="{% url 'washers' %}" class="button alt">Washers</a>
+                </nav>
+
+
+			</header>
+
+       {% block body %}{% endblock %}
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Get In Touch</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> (995) 574-21-55-39</li>
+						<li><span class="icon fa-envelope"></span>
+                            <a href="mailto:sexycars@info.com"> sexycars@info.com</a></li>
+						<li><span class="icon fa-map-marker"></span>
+                            <a href="https://goo.gl/maps/4SUtGDUHehf4rgKy8"> 67 Merab Kostava St.</a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>.
+				</div>
+			</footer>
+
+
+
+		<!-- Scripts -->
+			<script src="{% static 'washing_service/js/jquery.min.js' %}"></script>
+			<script src="{% static 'washing_service/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'washing_service/js/skel.min.js' %}"></script>
+			<script src="{% static 'washing_service/js/utils.js' %}"></script>
+			<script src="{% static 'washing_service/js/main.js' %}"></script>
+
+	</body>
+</html>

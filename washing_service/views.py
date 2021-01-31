@@ -28,4 +28,8 @@ def home(request):
     else:
         form = CreateNewOrder()
 
-    return render(request, 'washing_service/main.html', {'form': form})
+    return render(request, 'washing_service/home.html', {'form': form})
+
+
+def washers(request):
+    return render(request, 'washing_service/washers.html')
