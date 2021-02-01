@@ -11,30 +11,43 @@
 
 {% block body %}
 <div class="wrapper">
-  <div class="tabs">
-    <div class="tab">
-      <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-      <label for="tab-1" class="tab-label">Overall</label>
-      <div class="tab-content">  for a narrow fortune, I was bound apprentice to Mr. James Bates, an eminent surgeon in London, with whom I continued four years. </div>
-    </div>
-    <div class="tab">
-      <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-      <label for="tab-2" class="tab-label">Last Year</label>
-      <div class="tab-content"> would be, some time or other, my fortune to do. </div>
-    </div>
-    <div class="tab">
-      <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
-      <label for="tab-3" class="tab-label">Last Month</label>
-      <div class="tab-content">When I left Mr. Bates, I went down to my father: where, by the assistance of him and my uncle John, and some other relations, I got forty pounds, and a promise of thirty pounds a year to maintain me at Leyden: there I studied physic two years and seven months, knowing it would be useful in long voyages.</div>
-    </div>
-    <div class="tab">
-      <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-      <label for="tab-4" class="tab-label">Last Week</label>
-      <div class="tab-content">When I left Mr. Bates, I went down to my father: where, by the assistance of him and my uncle John, and some other relations, I got forty pounds, and a promise of thirty pounds a year to maintain me at Leyden: there I studied physic two years and seven months, knowing it would be useful in long voyages.</div>
-    </div>
+  {% for items, value in washers.items %}
+      <div class="tabs">
+        <div class="tab">
+          <input type="radio" name="css-tabs{{ value.0 }}" id="overall-tab{{ value.0 }}" checked class="tab-switch">
+          <label for="overall-tab{{ value.0 }}" class="tab-label">Overall</label>
+          <div class="tab-content"> {{ items }} is one of our washers!
+          {% if value.1 %} He{% else %} She{% endif %} is working on {{ value.2 }}.
+          {% if value.1 %} His{% else %} Her{% endif %} overall income is
+          <b>{{ value.3 }} GEL</b>. </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs{{ value.0 }}" id="year-tab{{ value.0 }}" class="tab-switch">
+          <label for="year-tab{{ value.0 }}" class="tab-label">Current Year</label>
+          <div class="tab-content"> {{ items }} is one of our washers!
+          {% if value.1 %} He{% else %} She{% endif %} is working on {{ value.2 }}.
+          In the current year, {% if value.1 %} he{% else %} she{% endif %} earned
+          <b>{{ value.4 }} GEL</b>. </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs{{ value.0 }}" id="month-tab{{ value.0 }}" class="tab-switch">
+          <label for="month-tab{{ value.0 }}" class="tab-label">Current Month</label>
+          <div class="tab-content"> {{ items }} is one of our washers!
+          {% if value.1 %} He{% else %} She{% endif %} is working on {{ value.2 }}.
+          In the current month, {% if value.1 %} he{% else %} she{% endif %} earned
+          <b>{{ value.5 }} GEL</b>. </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs{{ value.0 }}" id="week-tab{{ value.0 }}" class="tab-switch">
+          <label for="week-tab{{ value.0 }}" class="tab-label">Current Week</label>
+          <div class="tab-content"> {{ items }} is one of our washers!
+          {% if value.1 %} He{% else %} She{% endif %} is working on {{ value.2 }}.
+          In the current week, {% if value.1 %} he{% else %} she{% endif %} earned
+              <b>{{ value.6 }} GEL</b>. </div>
+        </div>
 
-  </div>
-
+      </div>
+ {% endfor %}
 </div>
 
 
