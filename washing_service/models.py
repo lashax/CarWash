@@ -26,6 +26,7 @@ class Manager(models.Model):
 
 class Washer(models.Model):
     full_name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=10)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
 
     def __str__(self):
