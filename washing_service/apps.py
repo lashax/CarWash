@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.db.utils import OperationalError
 
 
 class WashingServiceConfig(AppConfig):
@@ -12,18 +13,27 @@ class WashingServiceConfig(AppConfig):
         და უკვე შედგა ეს ვიზიტი, მაშინ ეს განცხადება გადადის History მოდელში.
         """
 
-        from washing_service.models import ScheduledOrder, History
-        from datetime import datetime
-        from datetime import timezone
+        try:
+            from washing_service.models import ScheduledOrder, History
+            from datetime import datetime
+            from datetime import timezone
 
-        schedules = ScheduledOrder.objects.all()
-        dt = datetime.now()
-        dt = dt.replace(tzinfo=timezone.utc)
-        for schedule in schedules:
-            if schedule.date < dt:
-                schedule.delete()
-                hist = History(customer=schedule.customer,
-                               location=schedule.location,
-                               car=schedule.car, date=schedule.date,
-                               phone=schedule.phone)
-                hist.save()
+            schedules = ScheduledOrder.objects.all()
+            dt = datetime.now()
+            dt = dt.replace(tzinfo=timezone.utc)
+            for schedule in schedules:
+                if schedule.date < dt:
+                    schedule.delete()
+                    hist = History(customer=schedule.customer,
+                                   location=schedule.location,
+                                   car=schedule.car, date=schedule.date,
+                                   phone=schedule.phone)
+                    hist.save()
+
+        except OperationalError:
+            """
+            ეს error ვარდება მაშინ, როცა ბაზიდან ინფორმაციას სწორად ვერ
+            იღებს. ამის მიზეზი არის ScheduleOrder ან History მოდულის შეცვლა
+            makemigrations/migrate კომანდის გამოყენების გარეშე.
+            """
+            pass
