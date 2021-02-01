@@ -1925,8 +1925,9 @@
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	input[type="datetime-local"],
 	select {
-		height: 3.5em;
+		height: 2.8em !important;
 		line-height: 3.5em;
 	}
 
