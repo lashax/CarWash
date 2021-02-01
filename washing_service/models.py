@@ -37,17 +37,29 @@ class Washer(models.Model):
         verbose_name_plural = 'Washers'
 
 
+class CarType(models.Model):
+    type = models.CharField(max_length=20)
+    price = models.DecimalField(max_digits=4, decimal_places=2)
+
+    def __str__(self):
+        return self.type
+
+    class Meta:
+        verbose_name = 'Car Type'
+        verbose_name_plural = 'Car Types'
+
+
 class History(models.Model):
     customer = models.CharField(max_length=50)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
-    car = models.CharField(max_length=50)
+    car_type = models.ForeignKey(CarType, on_delete=models.CASCADE)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
 
     washer = models.ForeignKey(Washer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.customer} - {self.car}"
+        return f"{self.customer} - {self.car_type}"
 
     class Meta:
         verbose_name = 'History'
@@ -57,14 +69,14 @@ class History(models.Model):
 class ScheduledOrder(models.Model):
     customer = models.CharField(max_length=40)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
-    car = models.CharField(max_length=50)
+    car_type = models.ForeignKey(CarType, on_delete=models.CASCADE)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
 
     washer = models.ForeignKey(Washer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.customer} - {self.car} at {self.date}"
+        return f"{self.customer} - {self.car_type} at {self.date}"
 
     class Meta:
         verbose_name = 'Scheduled Order'
