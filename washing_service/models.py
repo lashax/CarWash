@@ -14,6 +14,8 @@ class WashingCenter(models.Model):
 
 class Manager(models.Model):
     full_name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=10, null=True)
+    salary = models.IntegerField(null=True)
     location = models.OneToOneField(WashingCenter, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -27,6 +29,9 @@ class Manager(models.Model):
 class Washer(models.Model):
     full_name = models.CharField(max_length=50)
     gender = models.CharField(max_length=10)
+
+    # Washer gets salary per order %
+    salary = models.DecimalField(max_digits=4, decimal_places=2, null=True)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
 
     def __str__(self):
