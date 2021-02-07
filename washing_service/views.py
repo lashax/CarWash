@@ -55,9 +55,9 @@ def washers(request):
             info.append(True)
         else:
             info.append(False)
-        info.extend([washer.location, int(overall[index].overall),
-                     int(year[index].year), int(month[index].month),
-                     int(week[index].week)])
+        info.extend([washer.location, overall[index].overall,
+                     year[index].year, month[index].month,
+                     week[index].week])
 
         wash[washer.full_name] = info
 
