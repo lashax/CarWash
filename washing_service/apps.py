@@ -26,8 +26,10 @@ class WashingServiceConfig(AppConfig):
                     schedule.delete()
                     hist = History(customer=schedule.customer,
                                    location=schedule.location,
-                                   car=schedule.car, date=schedule.date,
-                                   phone=schedule.phone)
+                                   car_type=schedule.car_type,
+                                   date=schedule.date,
+                                   phone=schedule.phone,
+                                   washer=schedule.washer)
                     hist.save()
 
         except OperationalError:
