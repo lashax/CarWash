@@ -1,13 +1,13 @@
 from datetime import datetime
-from django.forms import ModelForm, DateTimeInput
-from .models import ScheduledOrder
+from django.forms import ModelForm, DateTimeInput, ModelChoiceField
+from .models import ScheduledOrder, CarType, WashingCenter
 
 
 class CreateNewOrder(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(CreateNewOrder, self).__init__(*args, **kwargs)
-        self.fields['location'].empty_label = ''
-        self.fields['car_type'].empty_label = ''
+    car_type = ModelChoiceField(queryset=CarType.objects.all(), empty_label='',
+                                label='Car Type')
+    location = ModelChoiceField(queryset=WashingCenter.objects.all(),
+                                empty_label='')
 
     class Meta:
         model = ScheduledOrder
@@ -23,6 +23,5 @@ class CreateNewOrder(ModelForm):
 
         labels = {
             'customer': 'Full Name',
-            'car': 'Your Car',
             'phone': 'Phone Number',
         }
