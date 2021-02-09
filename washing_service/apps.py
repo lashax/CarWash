@@ -15,8 +15,7 @@ class WashingServiceConfig(AppConfig):
 
         try:
             from washing_service.models import ScheduledOrder, History
-            from datetime import datetime
-            from datetime import timezone
+            from datetime import datetime, timezone
 
             schedules = ScheduledOrder.objects.all()
             dt = datetime.now()
