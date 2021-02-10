@@ -54,6 +54,18 @@ class CarType(models.Model):
         verbose_name_plural = 'Car Types'
 
 
+class CarBrand(models.Model):
+    brand = models.CharField(max_length=20)
+    car_logo = models.ImageField(default='default-car.png')
+
+    def __str__(self):
+        return self.brand
+
+    class Meta:
+        verbose_name = 'Car Brand'
+        verbose_name_plural = 'Car Brands'
+
+
 class History(models.Model):
     customer = models.CharField(max_length=50)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
