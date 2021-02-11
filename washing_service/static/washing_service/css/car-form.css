@@ -1,0 +1,97 @@
+.car-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+  background: rgba(255,255,255,0.8);
+}
+.wrap-car {
+  width: 400px;
+  background: #48629D;
+  background: -webkit-linear-gradient(45deg, #48629D, #48629D);
+  background: -o-linear-gradient(45deg, #48629D, #48629D);
+  background: -moz-linear-gradient(45deg, #48629D, #48629D);
+  background: linear-gradient(45deg, #48629D, #48629D);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px 55px 20px 55px;
+}
+
+.form-title {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 20px;
+  color: #fff;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+}
+
+.container-car-form-btn {
+  padding-top: 23px;
+}
+
+.car-form-btn {
+  font-family: Poppins-Medium;
+  font-size: 14px;
+  color: #555555;
+  line-height: 1;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  min-width: 120px;
+  height: 40px;
+  border-radius: 2px;
+  position: relative;
+  z-index: 1;
+  background: #80c64a;
+  background: -webkit-linear-gradient(-135deg, #56ab2f, #a8e063);
+  background: -o-linear-gradient(-135deg, #56ab2f, #a8e063);
+  background: -moz-linear-gradient(-135deg, #56ab2f, #a8e063);
+  background: linear-gradient(-135deg, #56ab2f, #a8e063);
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.car-form-btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  border-radius: 2px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  opacity: 1;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.car-form-btn:hover {
+  color: #ffffff;
+}
+
+.car-form-btn:hover:before {
+  opacity: 0;
+}

@@ -2701,12 +2701,17 @@
 		}
 
 			#header nav.left {
-				right: 11em;
+				right: 17.2em;
 			}
 
 			#header nav.right {
+				right: 8.5em;
+			}
+
+			#header nav.far-right {
 				right: 2em;
 			}
+
 
 			#header nav .button {
 				padding: 0 2em;

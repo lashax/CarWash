@@ -3,6 +3,8 @@ from datetime import datetime, timedelta, timezone
 from django.core.exceptions import ValidationError
 from django.utils import timezone as djtimezone
 
+from washing_service.models import CarBrand
+
 
 def validate_date(value: datetime) -> None:
     """
@@ -35,3 +37,14 @@ def validate_phone(value: str) -> None:
         # length of phone number is 12 if it starts with 995 and it's 9 if not
         raise ValidationError('Incorrect phone number!',
                               code='invalid_phone')
+
+
+def unique_brand(value: str) -> None:
+    """
+    Validate that given value for car brand is not already in database.
+    Model's 'unique' parameter is not used, as it checks for case sensitive
+    string, which is not enough. Thus, iexact lookup has been used.
+    """
+    if CarBrand.objects.filter(brand__iexact=value):
+        raise ValidationError(f'"{value}" already exists!',
+                              code='already_exists')

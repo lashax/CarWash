@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
 
-from .forms import CreateNewOrder
+from .forms import CreateNewOrder, CreateCarBrand
 from .models import CarBrand
 from .view_helpers.washers import earning_by_time
 
@@ -69,11 +69,26 @@ def washers(request):
 
 
 def cars(request):
+    if request.method == 'POST':
+        form = CreateCarBrand(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'New car brand has been saved!')
+
+            return HttpResponseRedirect(request.session['current_page'])
+    else:
+        form = CreateCarBrand()
+
+    # Saves current page's path
+    request.session['current_page'] = request.path_info + '?page=' \
+                                      + request.GET.get('page', '1')
+
     paginator = Paginator(CarBrand.objects.all(), 9,
                           allow_empty_first_page=True)
-
     page_number = request.GET.get('page')
     car_brands = paginator.get_page(page_number)
 
     return render(request, 'washing_service/cars.html',
-                  {'car_brands': car_brands})
+                  {'car_brands': car_brands, 'form': form})

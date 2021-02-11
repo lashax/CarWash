@@ -1,4 +1,5 @@
 {% extends 'washing_service/base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}
@@ -7,9 +8,38 @@
 
 {% block imports %}
     <link rel="stylesheet" href="{% static 'washing_service/css/cars_cards.css' %}" />
+    <link rel="stylesheet" href="{% static 'washing_service/css/car-form.css' %}" />
 {% endblock %}
 
 {% block body %}
+<!--Form-->
+    <div class="car-container">
+    <div class="wrap-car">
+        <form method="post" action="." class="car-form" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <span class="form-title">
+                Add New Car Brand
+            </span>
+            {{ form|crispy }}
+            {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+            {% endif %}
+
+            <div class="container-car-form-btn">
+                <button class="car-form-btn"">
+                    Submit
+                </button>
+            </div>
+
+        </form>
+       </div>
+    </div>
+<!--end of Form-->
+
     <div class="wrapper">
         <div class="container">
         {% for car in car_brands %}

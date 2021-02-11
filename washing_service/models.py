@@ -56,7 +56,8 @@ class CarType(models.Model):
 
 class CarBrand(models.Model):
     brand = models.CharField(max_length=20)
-    car_logo = models.ImageField(default='default-car.png')
+    car_logo = models.ImageField(default='default-car.png',
+                                 blank=True, null=True)
 
     def __str__(self):
         return self.brand
