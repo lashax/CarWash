@@ -4,3 +4,4 @@ Car wash website.
 
 ```pip install django-crispy-forms```
 
+```pip install Pillow```
