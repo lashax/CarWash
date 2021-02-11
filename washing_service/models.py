@@ -71,6 +71,8 @@ class History(models.Model):
     customer = models.CharField(max_length=50)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
     car_type = models.ForeignKey(CarType, on_delete=models.CASCADE)
+    car_brand = models.ForeignKey(CarBrand, on_delete=models.DO_NOTHING,
+                                  blank=True, null=True)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
 
@@ -88,6 +90,8 @@ class ScheduledOrder(models.Model):
     customer = models.CharField(max_length=40)
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
     car_type = models.ForeignKey(CarType, on_delete=models.CASCADE)
+    car_brand = models.ForeignKey(CarBrand, on_delete=models.DO_NOTHING,
+                                  blank=True, null=True)
     date = models.DateTimeField()
     phone = models.CharField(max_length=30)
 
