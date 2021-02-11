@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 from .forms import CreateNewOrder
+from .models import CarBrand
 from .view_helpers.washers import earning_by_time
 
 
@@ -64,3 +66,14 @@ def washers(request):
     context = {'washers': wash}
 
     return render(request, 'washing_service/washers.html', context=context)
+
+
+def cars(request):
+    paginator = Paginator(CarBrand.objects.all(), 9,
+                          allow_empty_first_page=True)
+
+    page_number = request.GET.get('page')
+    car_brands = paginator.get_page(page_number)
+
+    return render(request, 'washing_service/cars.html',
+                  {'car_brands': car_brands})
