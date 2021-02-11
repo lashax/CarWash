@@ -26,6 +26,7 @@ class WashingServiceConfig(AppConfig):
                     hist = History(customer=schedule.customer,
                                    location=schedule.location,
                                    car_type=schedule.car_type,
+                                   car_brand=schedule.car_brand,
                                    date=schedule.date,
                                    phone=schedule.phone,
                                    washer=schedule.washer)
