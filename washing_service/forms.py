@@ -10,6 +10,9 @@ from .validators import validate_date, validate_phone, unique_brand
 class CreateNewOrder(ModelForm):
     car_type = ModelChoiceField(queryset=CarType.objects.all(), empty_label='',
                                 label='Car Type')
+    car_brand = ModelChoiceField(queryset=CarBrand.objects.all(),
+                                 empty_label='', label='Car Brand',
+                                 required=False)
     location = ModelChoiceField(queryset=WashingCenter.objects.all(),
                                 empty_label='')
     phone = CharField(max_length=30, validators=[validate_phone],
@@ -35,7 +38,8 @@ class CreateNewOrder(ModelForm):
 
     class Meta:
         model = ScheduledOrder
-        fields = ['customer', 'location', 'car_type', 'phone', 'date']
+        fields = ['customer', 'location', 'car_type', 'car_brand',
+                  'phone', 'date']
 
         labels = {'customer': 'Full Name'}
 
