@@ -2,6 +2,4 @@
 
 Car wash website.
 
-```pip install django-crispy-forms```
-
-```pip install Pillow```
+```pip install -r requirements.txt```
