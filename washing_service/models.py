@@ -1,4 +1,7 @@
+from django.core.validators import MinValueValidator
 from django.db import models
+
+from washing_service.validators import validate_gender
 
 
 class WashingCenter(models.Model):
@@ -14,8 +17,10 @@ class WashingCenter(models.Model):
 
 class Manager(models.Model):
     full_name = models.CharField(max_length=50)
-    gender = models.CharField(max_length=10)
-    salary = models.IntegerField()
+    gender = models.CharField(max_length=1, help_text='Enter M/F',
+                              validators=[validate_gender])
+    salary = models.IntegerField(help_text='Monthly salary',
+                                 validators=[MinValueValidator(0)])
     location = models.OneToOneField(WashingCenter, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -28,10 +33,13 @@ class Manager(models.Model):
 
 class Washer(models.Model):
     full_name = models.CharField(max_length=50)
-    gender = models.CharField(max_length=10)
+    gender = models.CharField(max_length=1, help_text='Enter M/F',
+                              validators=[validate_gender])
 
     # Washer gets salary per order %
-    salary = models.DecimalField(max_digits=4, decimal_places=2)
+    salary = models.DecimalField(max_digits=4, decimal_places=2,
+                                 help_text='Salary per order %',
+                                 validators=[MinValueValidator(0)])
     location = models.ForeignKey(WashingCenter, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -44,7 +52,9 @@ class Washer(models.Model):
 
 class CarType(models.Model):
     type = models.CharField(max_length=20)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
+    price = models.DecimalField(max_digits=4, decimal_places=2,
+                                help_text='Price per wash',
+                                validators=[MinValueValidator(0)])
 
     def __str__(self):
         return self.type

@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 from django.core.exceptions import ValidationError
 from django.utils import timezone as djtimezone
 
-from washing_service.models import CarBrand
+import washing_service.models
 
 
 def validate_date(value: datetime) -> None:
@@ -45,6 +45,15 @@ def unique_brand(value: str) -> None:
     Model's 'unique' parameter is not used, as it checks for case sensitive
     string, which is not enough. Thus, iexact lookup has been used.
     """
-    if CarBrand.objects.filter(brand__iexact=value):
+    if washing_service.models.CarBrand.objects.filter(brand__iexact=value):
         raise ValidationError(f'"{value}" already exists!',
                               code='already_exists')
+
+
+def validate_gender(value: str) -> None:
+    """
+    Validate that gender field of washing_service.models.Washer is correctly
+    inputted. Only accepted values are 'M' or 'F'.
+    """
+    if value.upper() not in ('M', 'F'):
+        raise ValidationError("Input 'M' or 'F'", code='invalid_gender')
