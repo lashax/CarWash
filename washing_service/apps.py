@@ -6,7 +6,7 @@ class WashingServiceConfig(AppConfig):
     name = 'washing_service'
     verbose_name = 'Washing Service'
 
-    def ready(self):
+    def ready(self) -> None:
         """
         სერვერის გაშვებისას, მარტო ერთხელ მოწმდება ScheduledOrder მოდელი.
         თუ მასში არსებული განცხადებები უკვე დასრულდა, ანუ ვისიტი იყო დაგეგმილი

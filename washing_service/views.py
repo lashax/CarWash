@@ -1,7 +1,8 @@
 from random import randint
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.core.handlers.wsgi import WSGIRequest
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
@@ -11,7 +12,7 @@ from .models import CarBrand
 from .view_helpers.washers import earning_by_time
 
 
-def home(request):
+def home(request: WSGIRequest) -> HttpResponse:
     if request.method == 'POST':
         form = CreateNewOrder(request.POST)
 
@@ -36,7 +37,7 @@ def home(request):
     return render(request, 'washing_service/home.html', {'form': form})
 
 
-def washers(request):
+def washers(request: WSGIRequest) -> HttpResponse:
     wash = {}
 
     # Each washers' overall salary
@@ -68,7 +69,7 @@ def washers(request):
     return render(request, 'washing_service/washers.html', context=context)
 
 
-def cars(request):
+def cars(request: WSGIRequest) -> HttpResponse:
     if request.method == 'POST':
         form = CreateCarBrand(request.POST, request.FILES)
 
