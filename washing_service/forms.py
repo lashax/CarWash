@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
 
 from django.forms import (ModelForm, DateTimeInput, ModelChoiceField,
-                          DateTimeField, CharField)
+                          DateTimeField)
 from .models import ScheduledOrder, CarType, WashingCenter, CarBrand
 
-from .validators import validate_date, validate_phone, unique_brand
+from .validators import validate_date
 
 
 class CreateNewOrder(ModelForm):
@@ -15,8 +15,6 @@ class CreateNewOrder(ModelForm):
                                  required=False)
     location = ModelChoiceField(queryset=WashingCenter.objects.all(),
                                 empty_label='')
-    phone = CharField(max_length=30, validators=[validate_phone],
-                      label='Phone Number')
 
     date_attrs = {
         'type': 'datetime-local',
@@ -45,7 +43,6 @@ class CreateNewOrder(ModelForm):
 
 
 class CreateCarBrand(ModelForm):
-    brand = CharField(max_length=20, validators=[unique_brand])
 
     class Meta:
         model = CarBrand

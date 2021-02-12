@@ -1,7 +1,11 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from washing_service.validators import validate_gender
+from washing_service.validators import (
+    validate_gender,
+    unique_brand,
+    validate_phone
+)
 
 
 class WashingCenter(models.Model):
@@ -65,7 +69,7 @@ class CarType(models.Model):
 
 
 class CarBrand(models.Model):
-    brand = models.CharField(max_length=20)
+    brand = models.CharField(max_length=20, validators=[unique_brand])
     car_logo = models.ImageField(default='default-car.png',
                                  blank=True, null=True)
 
@@ -84,7 +88,7 @@ class History(models.Model):
     car_brand = models.ForeignKey(CarBrand, on_delete=models.DO_NOTHING,
                                   blank=True, null=True)
     date = models.DateTimeField()
-    phone = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, validators=[validate_phone])
 
     washer = models.ForeignKey(Washer, on_delete=models.CASCADE)
 
@@ -103,7 +107,7 @@ class ScheduledOrder(models.Model):
     car_brand = models.ForeignKey(CarBrand, on_delete=models.DO_NOTHING,
                                   blank=True, null=True)
     date = models.DateTimeField()
-    phone = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, validators=[validate_phone])
 
     washer = models.ForeignKey(Washer, on_delete=models.CASCADE)
 
