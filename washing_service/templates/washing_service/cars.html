@@ -52,50 +52,7 @@
     </div>
 
 <!--Pagination-->
-    <nav aria-label="Page navigation" id="pag-nav">
-        <ul class="pagination justify-content-center">
-        {% if car_brands.has_previous %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ car_brands.previous_page_number }}">Previous</a>
-          </li>
-        {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-        {% endif %}
-
-        {% if car_brands.number|add:'-4' > 1 %}
-            <li class="page-item"><a class="page-link" href="?page={{ car_brands.number|add:'-5' }}">&hellip;</a></li>
-        {% endif %}
-
-        {% for i in car_brands.paginator.page_range %}
-            {% if car_brands.number == i %}
-                <li class="page-item active" aria-current="page">
-              <span class="page-link">
-                {{ i }}
-                <span class="sr-only">(current)</span>
-              </span>
-            </li>
-            {% elif i > car_brands.number|add:'-5' and i < car_brands.number|add:'5' %}
-                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-        {% endfor %}
-
-        {% if car_brands.paginator.num_pages > car_brands.number|add:'4' %}
-           <li class="page-item"><a class="page-link" href="?page={{ car_brands.number|add:'5' }}">&hellip;</a></li>
-        {% endif %}
-
-        {% if car_brands.has_next %}
-            <li class="page-item">
-            <a class="page-link" href="?page={{ car_brands.next_page_number }}">Next</a>
-          </li>
-        {% else %}
-            <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-          </li>
-        {% endif %}
-      </ul>
-    </nav>
-    <!--end of Pagination-->
+    {% include "washing_service/paginator.html" with model_objects=car_brands %}
+<!--end of Pagination-->
 
 {% endblock %}
