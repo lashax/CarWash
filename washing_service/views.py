@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 
 from .forms import CreateNewOrder, CreateCarBrand
-from .models import CarBrand
+from .models import CarBrand, Washer
 from .view_helpers.washers import earning_by_time
 
 
@@ -38,21 +38,29 @@ def home(request: WSGIRequest) -> HttpResponse:
 
 
 def washers(request: WSGIRequest) -> HttpResponse:
-    wash = {}
+    paginator = Paginator(Washer.objects.all(), 3,
+                          allow_empty_first_page=True)
+    page_number = request.GET.get('page')
+    washers_page = paginator.get_page(page_number)
+
+    washers_info = {}
 
     # Each washers' overall salary
-    overall = earning_by_time('overall')
+    overall = earning_by_time('overall', washers_page)
 
     # Each washers' salary in the current year
-    year = earning_by_time('year')
+    year = earning_by_time('year', washers_page)
 
     # Each washers' salary in the current month
-    month = earning_by_time('month')
+    month = earning_by_time('month', washers_page)
 
     # Each washers' salary in the current week
-    week = earning_by_time('week')
+    week = earning_by_time('week', washers_page)
 
     for index, washer in enumerate(overall):
+        # 'info' list will contain items, in the following order: id,
+        # True/False (True if M, False if F), location, overall income,
+        # yearly income, monthly income, weekly income.
         info = [washer.id]
         if washer.gender.upper() == 'M':
             info.append(True)
@@ -62,9 +70,9 @@ def washers(request: WSGIRequest) -> HttpResponse:
                      year[index].year, month[index].month,
                      week[index].week])
 
-        wash[washer.full_name] = info
+        washers_info[washer.full_name] = info
 
-    context = {'washers': wash}
+    context = {'washers': washers_info, 'washers_page': washers_page}
 
     return render(request, 'washing_service/washers.html', context=context)
 
@@ -90,6 +98,5 @@ def cars(request: WSGIRequest) -> HttpResponse:
                           allow_empty_first_page=True)
     page_number = request.GET.get('page')
     car_brands = paginator.get_page(page_number)
-
     return render(request, 'washing_service/cars.html',
                   {'car_brands': car_brands, 'form': form})

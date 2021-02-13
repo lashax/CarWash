@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Union
 
+from django.core.paginator import Page
 from django.db.models import Count, Q, F, DecimalField, QuerySet
 
 from washing_service.models import Washer
@@ -60,17 +61,28 @@ def earning_by_car(car_type: str, history_date: str,
     return car_earning
 
 
-def earning_by_time(filter_arg: str) -> QuerySet:
+def create_query_set(objects_page: Page) -> QuerySet:
     """
-    Given 'filter_arg' variable, which is either
-    year, month, week or overall, calculate each washers' earning by
-    its' corresponding interval.
+    Given Page object, firstly create list of ids for each object on that page,
+    then generate QuerySet for that objects.
+    """
+    objects_ids = [obj.id for obj in objects_page]
+    query_set = Washer.objects.filter(id__in=objects_ids)
 
-    Return QuerySet object of Washer, where each data has added
-    attribute named corresponding to filter_arg (so if we are filtering
-    with month, attribute name will be month). This data stores value in decimal
-    as to how much has the washer earned in the given interval, also considering
-    salary %.
+    return query_set
+
+
+def earning_by_time(filter_arg: str, objects_page: Page) -> QuerySet:
+    """
+    'filter_arg': either year, month, week or overall
+    'objects_page': page, where current page's washers are stored
+                    when iterated over
+
+    Return QuerySet object of washers of the current page,
+    where each data has added attribute named corresponding to
+    filter_arg (so if we are filtering with month, attribute name
+    will be month). This data stores value in decimal as to how much has
+    the washer earned in the given interval, also considering salary %.
 
     Note, that even though type of new attribute is decimal, it will never
     have fractional part because we are diving the last result by 100,
@@ -90,7 +102,10 @@ def earning_by_time(filter_arg: str) -> QuerySet:
     earning_by_minivan = earning_by_car('Minivan', history_date, time_interval)
     earning_by_truck = earning_by_car('Truck', history_date, time_interval)
 
-    earning = Washer.objects.annotate(
+    # QuerySet of current page's washers
+    current_washers = create_query_set(objects_page)
+
+    earning = current_washers.annotate(
         **{filter_arg: (earning_by_sedan + earning_by_minivan +
                         earning_by_truck) * F('salary') / 100})
 
