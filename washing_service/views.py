@@ -29,7 +29,8 @@ def home(request: WSGIRequest) -> HttpResponse:
             order.save()
 
             messages.add_message(request, messages.SUCCESS,
-                                 'Your visit has been saved!')
+                                 'Your visit has been saved!',
+                                 extra_tags='order')
             return HttpResponseRedirect(f"{reverse('home')}#schedule_form")
     else:
         form = CreateNewOrder()

@@ -2700,6 +2700,14 @@
 			line-height: inherit;
 		}
 
+			#header nav.left-side {
+				left: 2em;
+			}
+
+			#header nav.left-side-right {
+				left: 9em;
+			}
+
 			#header nav.left {
 				right: 17.2em;
 			}

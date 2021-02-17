@@ -1,4 +1,5 @@
 {% load static %}
+{% load word_index %}
 
 <!DOCTYPE HTML>
 <html>
@@ -36,6 +37,14 @@
 			<header id="header">
                 <a href="{% url 'home' %}" class="logo">Clean Is Sexy</a>
 
+                <nav class="left-side">
+                    <a href="#" class="button alt">Login</a>
+                </nav>
+
+                <nav class="left-side-right">
+                    <a href="{% url 'register' %}" class="button alt">Register</a>
+                </nav>
+
                 <nav class="left">
                     <a href="{% url 'home' %}" class="button alt">Home</a>
                 </nav>
@@ -47,10 +56,17 @@
                 <nav class="far-right">
                     <a href="{% url 'cars' %}" class="button alt">Cars</a>
                 </nav>
-
-
-
 			</header>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'register' in message.tags %}
+                    <div class="alert alert-{{ message.tags|nth_word:1 }}">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 
        {% block body %}{% endblock %}
 
