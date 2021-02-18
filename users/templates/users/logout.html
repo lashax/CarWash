@@ -1,0 +1,13 @@
+{% extends 'washing_service/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <div class="container 50%" style="margin-top: 50px; margin-bottom: 50px">
+        <h2>You have been logged out</h2>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'login' %}">Login Again</a>
+            </small>
+        </div>
+    </div>
+{% endblock %}

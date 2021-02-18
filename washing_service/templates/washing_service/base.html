@@ -37,13 +37,24 @@
 			<header id="header">
                 <a href="{% url 'home' %}" class="logo">Clean Is Sexy</a>
 
-                <nav class="left-side">
-                    <a href="#" class="button alt">Login</a>
-                </nav>
+                {% if user.is_authenticated %}
+                    <nav class="left-side">
+                        <a href="{% url 'logout' %}" class="button alt">Logout</a>
+                    </nav>
 
-                <nav class="left-side-right">
-                    <a href="{% url 'register' %}" class="button alt">Register</a>
-                </nav>
+                    <nav class="align-profile">
+                        <a href="{% url 'profile' %}" class="button alt">Profile</a>
+                    </nav>
+
+                {% else %}
+                    <nav class="left-side">
+                        <a href="{% url 'login' %}" class="button alt">Login</a>
+                    </nav>
+
+                    <nav class="left-side-right">
+                        <a href="{% url 'register' %}" class="button alt">Register</a>
+                    </nav>
+                {% endif %}
 
                 <nav class="left">
                     <a href="{% url 'home' %}" class="button alt">Home</a>
@@ -61,7 +72,7 @@
         {% if messages %}
             {% for message in messages %}
                 {% if 'register' in message.tags %}
-                    <div class="alert alert-{{ message.tags|nth_word:1 }}">
+                    <div class="text-center alert alert-{{ message.tags|nth_word:1 }}">
                         {{ message }}
                     </div>
                 {% endif %}
