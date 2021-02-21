@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Union
 
+from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import Page
 from django.db.models import Count, Q, F, DecimalField, QuerySet
 
@@ -110,3 +111,28 @@ def earning_by_time(filter_arg: str, objects_page: Page) -> QuerySet:
                         earning_by_truck) * F('salary') / 100})
 
     return earning
+
+
+def get_washer_query(request: WSGIRequest) -> Union[list, QuerySet]:
+    """
+    Given request, generate QuerySet or list of Washer objects which will then
+    be displayed on the page.
+
+    This function is used to filter results by washer name if user uses search
+    box.
+    """
+    query = request.GET.get('q')
+
+    # if in the current request user did not search for anything
+    if not query:
+        return Washer.objects.all()
+
+    queryset = []
+    queries = query.split()
+    for q in queries:
+        washers = Washer.objects.filter(full_name__icontains=q)
+
+        for washer in washers:
+            queryset.append(washer)
+
+    return list(set(queryset))

@@ -11,7 +11,15 @@
 
 {% block body %}
     <div class="wrapper">
-      {% for items, value in washers.items %}
+    <div>
+        <form>
+            <input type="text" name="q" placeholder="Search..."
+                   value="{{ request.GET.q }}">
+            <input class="mt-1 btn-sm" type="submit" value="Submit">
+        </form>
+    </div>
+    {% if washers_page %}
+        {% for items, value in washers.items %}
           <div class="tabs">
             <div class="tab">
               <input type="radio" name="css-tabs{{ value.0 }}" id="overall-tab{{ value.0 }}" checked class="tab-switch">
@@ -48,6 +56,9 @@
 
           </div>
      {% endfor %}
+    {% else %}
+        <p class="lead text-secondary">Sorry, we couldn't find any results.</p>
+    {% endif %}
     </div>
     {% include "washing_service/paginator.html" with model_objects=washers_page %}
 

@@ -8,8 +8,8 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 
 from .forms import CreateNewOrder, CreateCarBrand
-from .models import CarBrand, Washer
-from .view_helpers.washers import earning_by_time
+from .models import CarBrand
+from .view_helpers.washers import earning_by_time, get_washer_query
 
 
 def home(request: WSGIRequest) -> HttpResponse:
@@ -39,7 +39,9 @@ def home(request: WSGIRequest) -> HttpResponse:
 
 
 def washers(request: WSGIRequest) -> HttpResponse:
-    paginator = Paginator(Washer.objects.all(), 3,
+    query_set = get_washer_query(request)
+
+    paginator = Paginator(query_set, 3,
                           allow_empty_first_page=True)
     page_number = request.GET.get('page')
     washers_page = paginator.get_page(page_number)
